@@ -3,199 +3,593 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Prueba</title>
-    <!-- Fuente moderna desde Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Santiago Tapia Bazán | Portfolio & Backend Developer</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Lucide-like Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Estilos generales */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-indigo: #6366f1;
+            --accent-emerald: #10b981;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #f4f7fe;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
-        /* Navegación */
+        /* Navbar */
         header {
-            background: #ffffff;
-            padding: 20px 50px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 15px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #4f46e5;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            font-family: 'Fira Code', monospace;
         }
 
         nav a {
-            margin-left: 20px;
+            color: var(--text-muted);
             text-decoration: none;
-            color: #555;
+            margin-left: 25px;
             font-weight: 500;
             transition: color 0.3s;
         }
 
         nav a:hover {
-            color: #4f46e5;
+            color: var(--accent-blue);
         }
 
-        /* Hero Section (Sección Principal) */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            color: white;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .btn {
-            background-color: #38bdf8;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-            transition: transform 0.2s, background-color 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            background-color: #0ea5e9;
-        }
-
-        /* Sección de Tarjetas (Features) */
+        /* Container General */
         .container {
             max-width: 1100px;
-            margin: 60px auto;
+            margin: 0 auto;
             padding: 0 20px;
         }
 
-        .cards-grid {
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            background: radial-gradient(circle at 50% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ffffff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent-indigo);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Secciones */
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--accent-blue);
+        }
+
+        /* Grid Proyectos */
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
-        .card {
-            background: white;
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-indigo);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .card-icon {
-            font-size: 40px;
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 15px;
-            display: inline-block;
         }
 
-        .card h3 {
-            font-size: 20px;
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid rgba(56, 189, 248, 0.15);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .project-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Skills Layout */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .skill-box h3 {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-list {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .skill-list li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-list li::before {
+            content: "▹";
+            color: var(--accent-indigo);
+        }
+
+        /* Timeline (Experiencia / Educación) */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent-indigo);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .timeline-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
             margin-bottom: 10px;
-            color: #1e293b;
         }
 
-        .card p {
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        /* Pie de página */
+        /* Footer */
         footer {
+            padding: 40px 0;
             text-align: center;
-            padding: 30px;
-            color: #94a3b8;
-            font-size: 14px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            nav { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .btn-group { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Menú de navegación -->
+    <!-- Header Navigation -->
     <header>
-        <div class="logo">MiSitio</div>
+        <div class="logo">&lt;SantiagoTapia /&gt;</div>
         <nav>
-            <a href="#">Inicio</a>
-            <a href="#">Servicios</a>
-            <a href="#">Contacto</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#skills">Habilidades</a>
+            <a href="#experiencia">Experiencia</a>
+            <a href="#contacto">Contacto</a>
         </nav>
     </header>
 
-    <!-- Sección Principal -->
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>¡Hola! Esta es una prueba</h1>
-        <p>Un diseño web moderno, limpio y responsive para comenzar cualquier proyecto con estilo.</p>
-        <a href="#" class="btn" onclick="alert('¡Funciona el botón!')">Hacé clic acá</a>
+        <div class="hero-content">
+            <span class="badge">Disponible para nuevos desafíos</span>
+            <h1>Santiago Tapia Bazán</h1>
+            <h2>Estudiante de Ingeniería en Informática & Backend Developer</h2>
+            <p>
+                Especializado en desarrollo Backend (C# / .NET), automatización de procesos con <strong>n8n</strong>, integración de Inteligencia Artificial (RAG) e infraestructura Cloud / DevOps.
+            </p>
+            <div class="btn-group">
+                <a href="#proyectos" class="btn btn-primary"><i class="fa-solid fa-code"></i> Ver Proyectos</a>
+                <a href="https://github.com/Santiagotapia989" target="_blank" class="btn btn-outline"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="mailto:Bazan0897@gmail.com" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Contactar</a>
+            </div>
+        </div>
     </section>
 
-    <!-- Contenido en Tarjetas -->
-    <main class="container">
-        <div class="cards-grid">
-            
-            <div class="card">
-                <div class="card-icon">🚀</div>
-                <h3>Rápido</h3>
-                <p>Construido con código CSS puro y super liviano para que cargue en un pestañeo.</p>
-            </div>
+    <div class="container">
 
-            <div class="card">
-                <div class="card-icon">🎨</div>
-                <h3>Diseño Lindo</h3>
-                <p>Uso de degradados suaves, sombras elegantes y bordes redondeados.</p>
-            </div>
+        <!-- Proyectos destacados -->
+        <section id="proyectos">
+            <h2 class="section-title"><i class="fa-solid fa-folder-open"></i> Proyectos Destacados</h2>
+            <div class="projects-grid">
 
-            <div class="card">
-                <div class="card-icon">📱</div>
-                <h3>Responsive</h3>
-                <p>Se adapta perfectamente a pantallas de celulares, tablets y computadoras.</p>
-            </div>
+                <!-- Proyecto 1: System RAG -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <h3 class="project-title">Sistema RAG Automatizado</h3>
+                            <i class="fa-solid fa-robot fa-lg" style="color: var(--accent-blue);"></i>
+                        </div>
+                        <p class="project-desc">
+                            Arquitectura Retrieval-Augmented Generation con automatización en n8n, búsqueda vectorial en Pinecone e inferencia rápida con Groq (LLaMA 3 / Qwen). Ingesta dinámica de PDFs y agente conversacional.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">n8n</span>
+                            <span class="tag">Pinecone</span>
+                            <span class="tag">Groq API</span>
+                            <span class="tag">Embeddings</span>
+                            <span class="tag">RAG</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://primary-production-4ff7.up.railway.app/webhook/e0eb38db-d63a-4ebc-bd19-cf1edeeae69b/chat" target="_blank">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo en Vivo
+                        </a>
+                        <a href="https://github.com/Santiagotapia989" target="_blank">
+                            <i class="fa-brands fa-github"></i> Repositorio
+                        </a>
+                    </div>
+                </div>
 
-        </div>
-    </main>
+                <!-- Proyecto 2: Centro Medico Digital -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <h3 class="project-title">Centro Médico Digital</h3>
+                            <i class="fa-solid fa-hospital-user fa-lg" style="color: var(--accent-emerald);"></i>
+                        </div>
+                        <p class="project-desc">
+                            Plataforma integral para gestión de turnos médicos online. Incluye reserva en 4 pasos, autenticación bcrypt, confirmaciones vía email con Resend y exportación masiva a Excel.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">Next.js 14</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Prisma ORM</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">Resend</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://mi-gestor-turnos.vercel.app/" target="_blank">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo en Vivo
+                        </a>
+                        <a href="https://github.com/Santiagotapia989/mi-gestor-turnos" target="_blank">
+                            <i class="fa-brands fa-github"></i> Código Fuente
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3: Center Print's -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <h3 class="project-title">Center Print's S.R.L.</h3>
+                            <i class="fa-solid fa-cart-shopping fa-lg" style="color: var(--accent-indigo);"></i>
+                        </div>
+                        <p class="project-desc">
+                            E-commerce y sitio corporativo para librería comercial. Integración directa de checkout de Mercado Pago, catálogo dinámico JSON, side-cart persistente (Zustand) y pedidos vía WhatsApp.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">Next.js 14</span>
+                            <span class="tag">Tailwind CSS</span>
+                            <span class="tag">Mercado Pago SDK</span>
+                            <span class="tag">Zustand</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://centerprints-catalog.vercel.app/" target="_blank">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo en Vivo
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section id="skills">
+            <h2 class="section-title"><i class="fa-solid fa-laptop-code"></i> Habilidades Técnicas</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-box">
+                    <h3><i class="fa-solid fa-server"></i> Backend & Lenguajes</h3>
+                    <ul class="skill-list">
+                        <li>C# / .NET Framework</li>
+                        <li>C / C++</li>
+                        <li>TypeScript / JavaScript</li>
+                        <li>Java (Básico)</li>
+                        <li>REST APIs (Swagger/OpenAPI)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-box">
+                    <h3><i class="fa-solid fa-gears"></i> Automatización & Cloud</h3>
+                    <ul class="skill-list">
+                        <li>n8n Workflows</li>
+                        <li>Pinecone (Vector DB)</li>
+                        <li>Groq & LLMs</li>
+                        <li>Render / Vercel</li>
+                        <li>Git & GitHub Workflows</li>
+                    </ul>
+                </div>
+
+                <div class="skill-box">
+                    <h3><i class="fa-solid fa-database"></i> Base de Datos & Web</h3>
+                    <ul class="skill-list">
+                        <li>PostgreSQL (Neon)</li>
+                        <li>Prisma ORM</li>
+                        <li>Next.js / React</li>
+                        <li>Tailwind CSS / HTML5</li>
+                    </ul>
+                </div>
+
+                <div class="skill-box">
+                    <h3><i class="fa-solid fa-award"></i> Logros & Idiomas</h3>
+                    <ul class="skill-list">
+                        <li>1° Puesto Hackathon UCA (2023)</li>
+                        <li>Inglés: B2 Upper-Intermediate (FCE Cambridge)</li>
+                        <li>Español: Nativo</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experiencia y Formación -->
+        <section id="experiencia">
+            <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experiencia & Formación</h2>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Febrero 2026 - Presente</div>
+                    <div class="timeline-title">Software Development Trainee</div>
+                    <div class="timeline-subtitle">Balance Group</div>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Capacitación virtual avanzada orientada a perfil Junior: Desarrollo Backend en C# y .NET, diseño e integración de REST APIs documentadas con Swagger, automatización de sistemas con n8n y maquetado Web.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - Presente</div>
+                    <div class="timeline-title">Ingeniería en Informática (3° Año)</div>
+                    <div class="timeline-subtitle">Facultad de Ingeniería del Ejército (FIE)</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-title">1° Puesto - Hackathon UCA</div>
+                    <div class="timeline-subtitle">Universidad Católica Argentina</div>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Competencia universitaria de desarrollo sostenible. Ideación, diseño y desarrollo en equipo bajo alta presión de tiempo.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto" style="border: none;">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <h2 style="font-size: 2rem; margin-bottom: 15px;">¿Trabajamos juntos?</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">
+                    Estoy disponible para proyectos de desarrollo backend, integraciones API y automatización con n8n.
+                </p>
+                <a href="mailto:Bazan0897@gmail.com" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 35px;">
+                    <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+                </a>
+            </div>
+        </section>
+
+    </div>
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 MiSitio - Creado como prueba visual</p>
+        <p>© Santiago Tapia Bazán — Buenos Aires, Argentina</p>
     </footer>
 
 </body>
